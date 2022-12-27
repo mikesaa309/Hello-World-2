@@ -69,21 +69,20 @@ function apiCall(path, method, body, deviceId) {
             reject(error);
         });
 
-        req.on('uncaughtException', error => {
-            reject(error);
-        });
 
         req.end();
     })
    
 }
 
-async function areCurtainsOpen() {
-    return await apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId).then((res) => console.log(res));
+function areCurtainsOpen() {
+    apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId).then((res) => console.log(res));
 }
 
 function toggleCurtains() {
     console.log(areCurtainsOpen());
 }
 
-toggleCurtains();
+apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId).then((res) => {
+    console.log(res);
+});
