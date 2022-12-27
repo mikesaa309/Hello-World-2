@@ -38,8 +38,8 @@ function apiCall(path, method, body, deviceId) {
         const options = {
             Hostname: 'api.switch-bot.com',
             port: 443,
-            path: `/v1.1/devices/${deviceId}/status`,
-            method: 'GET',
+            path: path,
+            method: method,
             headers: {
                 "Authorization": token,
                 "sign": sign,
@@ -72,7 +72,7 @@ function apiCall(path, method, body, deviceId) {
 }
 
 async function areCurtainsOpen() {
-    return await apiCall(getStatusPath, 'GET')
+    return await apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId);
 }
 
 function toggleCurtains() {
