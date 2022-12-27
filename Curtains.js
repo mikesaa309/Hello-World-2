@@ -59,6 +59,7 @@ function apiCall(path, method, body, deviceId) {
     
             res.on('end', () => {
                 // let curtainPosition = (JSON.parse(apiData).body.slidePosition)
+                console.log(apiData);
                 resolve(apiData);
             })
         });
