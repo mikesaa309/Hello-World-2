@@ -36,7 +36,7 @@ function apiCall(path, method, body, deviceId) {
         }
 
         const options = {
-            Hostname: 'api.switch-bot.com',
+            hostname: 'api.switch-bot.com',
             port: 443,
             path: path,
             method: method,
