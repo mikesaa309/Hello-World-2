@@ -48,7 +48,7 @@ const optionsPost = {
 };
 
 
-const req = https.request(optionsGet, optionsPOST ,res => {
+const req = https.request(optionsGet ,res => {
 	let data = '';
     res.on('data', (chunk) => {
         data += chunk;
