@@ -46,7 +46,6 @@ function apiCall(path, method, body, deviceId) {
                 "nonce": nonce,
                 "t": t,
                 'Content-Type': 'application/json',
-                'Content-Length': body.length,
             },
         }
 
