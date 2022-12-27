@@ -86,4 +86,4 @@ function toggleCurtains() {
     console.log(areCurtainsOpen());
 }
 
-toggleCurtains();
+toggleCurtains().then((res) => console.log(res));
