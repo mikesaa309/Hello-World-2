@@ -83,7 +83,7 @@ async function areCurtainsOpen() {
 }
 
 function toggleCurtains() {
-    console.log(areCurtainsOpen());
+    console.log(areCurtainsOpen().then((res) => console.log(res)));
 }
 
-toggleCurtains().then((res) => console.log(res));
+toggleCurtains();
