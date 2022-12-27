@@ -64,8 +64,14 @@ function apiCall(path, method, body, deviceId) {
         });
     
         req.on('error', error => {
+            console.log(`path: ${path}\nmethod: ${method}`);
             reject(error);
         });
+
+        req.on('uncaughtException', error => {
+            reject(error);
+        });
+
         req.end();
     })
    
