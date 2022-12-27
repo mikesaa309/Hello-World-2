@@ -79,11 +79,11 @@ function apiCall(path, method, body, deviceId) {
 }
 
 async function areCurtainsOpen() {
-    return await apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId);
+    return await apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId).then((res) => console.log(res));
 }
 
 function toggleCurtains() {
-    console.log(areCurtainsOpen().then((res) => console.log(res)));
+    console.log(areCurtainsOpen());
 }
 
 toggleCurtains();
