@@ -38,14 +38,15 @@ function apiCall(path, method, body, deviceId) {
         const options = {
             Hostname: 'api.switch-bot.com',
             port: 443,
-            path: path,
-            method: method,
+            path: `/v1.1/devices/${deviceId}/status`,
+            method: 'GET',
             headers: {
                 "Authorization": token,
                 "sign": sign,
                 "nonce": nonce,
                 "t": t,
                 'Content-Type': 'application/json',
+                'Content-Length': body.length,
             },
         }
 
