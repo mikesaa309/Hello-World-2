@@ -83,6 +83,6 @@ function toggleCurtains() {
     console.log(areCurtainsOpen());
 }
 
-apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId).then((res) => {
-    console.log(res);
+apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId).then(function(response) {
+    console.log(response);
 });
