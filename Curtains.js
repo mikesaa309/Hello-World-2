@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 const crypto = require('crypto');
 const https = require('https');
 const token = "57ad344e146aa706c42e1e55a6bb2be8f37a1c697f9ed9349ac0df8ec85ee96cc253400aa3789da4e5329dcfd8a708d3";
@@ -48,7 +46,7 @@ async function apiCall() {
         port: 443,
         method: 'GET',
         headers: {
-            "authorization": token,
+            "Authorization": token,
             "sign": sign,
             "nonce": nonce,
             "t": t,
