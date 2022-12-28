@@ -48,7 +48,7 @@ async function apiCall() {
         port: 443,
         method: 'GET',
         headers: {
-            "Authorization": token,
+            "authorization": token,
             "sign": sign,
             "nonce": nonce,
             "t": t,
@@ -58,14 +58,6 @@ async function apiCall() {
 
     const data = await response.json();
     console.log(data);
-}
-
-function areCurtainsOpen() {
-    apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId).then((res) => console.log(res));
-}
-
-function toggleCurtains() {
-    console.log(areCurtainsOpen());
 }
 
 apiCall();
