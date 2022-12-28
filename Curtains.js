@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 const crypto = require('crypto');
 const https = require('https');
 const token = "57ad344e146aa706c42e1e55a6bb2be8f37a1c697f9ed9349ac0df8ec85ee96cc253400aa3789da4e5329dcfd8a708d3";
@@ -26,53 +28,36 @@ const bodyTurnOn = JSON.stringify({
     "commandType": "command"
 });
 
-// console.log(sign);
+const options = {
+    hostname: 'api.switch-bot.com',
+    port: 443,
+    path: path,
+    method: method,
+    headers: {
+        "Authorization": token,
+        "sign": sign,
+        "nonce": nonce,
+        "t": t,
+        'Content-Type': 'application/json',
+        'Content-Length': body.length,
+    },
+}
 
-function apiCall(path, method, body, deviceId) {
-    return new Promise((resolve, reject) => {
-
-        if (body === undefined) {
-            body = '';
+async function apiCall() {
+    const response = await fetch(`api.switch-bot.com/v1.1/devices/${deviceId}/status`, {
+        port: 443,
+        method: 'GET',
+        headers: {
+            "Authorization": token,
+            "sign": sign,
+            "nonce": nonce,
+            "t": t,
+            "Content-Type": "application/json",
         }
-
-        const options = {
-            hostname: 'api.switch-bot.com',
-            port: 443,
-            path: path,
-            method: method,
-            headers: {
-                "Authorization": token,
-                "sign": sign,
-                "nonce": nonce,
-                "t": t,
-                'Content-Type': 'application/json',
-                'Content-Length': body.length,
-            },
-        }
-
-        const req = https.request(options, res => {
-            let apiData = '';
-
-            res.on('data', (chunk) => {
-                apiData += chunk;
-            });
-    
-            res.on('end', () => {
-                // let curtainPosition = (JSON.parse(apiData).body.slidePosition)
-                console.log(apiData);
-                resolve(apiData);
-            })
-        });
-    
-        req.on('error', error => {
-            console.log(`path: ${path}\nmethod: ${method}`);
-            reject(error);
-        });
-
-
-        req.end();
     })
-   
+
+    const data = await response.json();
+    console.log(data);
 }
 
 function areCurtainsOpen() {
@@ -83,6 +68,4 @@ function toggleCurtains() {
     console.log(areCurtainsOpen());
 }
 
-apiCall(getStatusPath, 'GET', bodyTurnOff, deviceId).then(function(response) {
-    console.log(response);
-});
+apiCall();
