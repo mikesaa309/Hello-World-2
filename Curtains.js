@@ -3,7 +3,7 @@ const https = require('https');
 const token = "57ad344e146aa706c42e1e55a6bb2be8f37a1c697f9ed9349ac0df8ec85ee96cc253400aa3789da4e5329dcfd8a708d3";
 const secret = "5f87ec0ddc65e392f2cbffbfb9be2032";
 const t = Date.now();
-const nonce = "requestID";
+const nonce = crypto.randomUUID.toString();
 const data = token + t + nonce;
 const signTerm = crypto.createHmac('sha256', secret)
     .update(Buffer.from(data, 'utf-8'))
